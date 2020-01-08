@@ -6,7 +6,7 @@ tags:
 
 # Android的消息机制
 
-## 1、Android的消息机制概述
+## Android的消息机制概述
 
 Handler是Android消息机制的上层接口，开发过程中只需要和Handler交互即可。Handler的使用过程很简单，通过它可以轻松地将一个任务切换到Handler所在的线程中去执行。使用场景简介：有时候需要在子线程中进行耗时的I/O操作，可能是读取文件或者访问网络等，当耗时操作完成以后可能需要在UI上做一些改变，由于Android开发规范的限制，我们并不能在子线程中更新UI，这个时候可以通过Handler就可以将更新UI的操作切换到主线程中执行。
 
@@ -18,7 +18,7 @@ Android的消息机制主要是指Handler的运行机制，Handler的运行需�
 Android的UI控件不是线程安全的，如果在多线程中并发访问，会导致UI控件处于不可预期的状态。如果对UI控件的访问加上锁机制，首先会让UI访问的逻辑变得复杂，其次锁机制会降低UI访问的效率，因为锁机制会阻塞某些线程的执行。因此，最简单高效的方法就是采用单线程模型，也就是只能主线程才处理UI操作。
 
 
-## 2、Handler的工作原理
+## Handler的工作过程
 
 Handler创建时会采用当前线程的Looper来构建内部的消息循环系统，如果当前线程没有Looper，需要创建Looper。Handler创建完毕后，线程内部的Looper和MessageQueue就可以和Handler一起协同工作。可以通过Handler的post方法将一个Runnable投递到Looper中去处理，也可以通过Handler的send方法发送一个消息到Looper去处理，post方法最终也是通过send方法来完成的。
 
@@ -27,7 +27,7 @@ Handler创建时会采用当前线程的Looper来构建内部的消息循环系�
 当Handler的send方法被调用时，它会调用MessageQueue的enqueueMessage方法将消息插入到消息队列，然后Looper发现有新消息，就会处理这个消息，最终消息中的Runnable或者Handler的handleMessage方法会被调用。Looper是运行在创建Handler的线程中的，这样Handler中的业务逻辑就可以被切换到创建Handler的线程中执行。
 
 
-## 3、MessageQueue的工作原理
+## MessageQueue的工作原理
 
 MessageQueue主要包含两个操作：插入和读取，读取操作本身会伴随着删除操作，插入和读取分别对应的方法是enqueueMessage和next。MessageQueue内部通过单链表的数据结构来维护消息列表，单链表在插入和删除上比较有优势。
 
@@ -142,7 +142,7 @@ Message next() {
 
 next方法是一个无限循环的方法，如果消息队列中没有消息，那么next方法会一直阻塞在这里。
 
-## 4、Looper的工作原理
+## Looper的工作原理
 Looper在Android的消息机制中扮演消息循环的角色，它会不停地从MessageQueue中查看是否有新消息，如果有新消息就会立刻处理，否则就一直阻塞。我们需要通过 Looper.prepare() 方法才能给当前线程创建 Looper 对象，并且需要调用 Looper.loop() 方法才能让当前线程的 MessageQueue 中的消息循环被处理。
 
 ~~~
@@ -210,3 +210,75 @@ public static void loop() {
 
 （3）如果next方法返回了新消息，Looper会通过msg.target.dispatchMessage(msg)处理这条消息，这里的msg.target就是发送这条消息的Handler对象。
 
+## Handler的工作原理
+
+Handler的工作过程主要包含消息的发送和接收过程。消息的发送可以通过post和send方法来实现，post方法最终也是通过send方法来实现的。
+
+### Handler发送消息的过程
+
+~~~
+public final boolean sendMessage(Message msg){
+   return sendMessageDelayed(msg, 0);
+}
+
+public final boolean sendMessageDelayed(Message msg, long delayMillis){
+    if (delayMillis < 0) {
+        delayMillis = 0;
+    }
+    return sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis);
+}
+
+public boolean sendMessageAtTime(Message msg, long uptimeMillis) {
+    MessageQueue queue = mQueue;
+    if (queue == null) {
+        RuntimeException e = new RuntimeException(
+            this + " sendMessageAtTime() called with no mQueue");
+            Log.w("Looper", e.getMessage(), e);
+            return false;
+        }
+    return enqueueMessage(queue, msg, uptimeMillis);
+}
+
+private boolean enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis) {
+    msg.target = this;
+    if (mAsynchronous) {
+        msg.setAsynchronous(true);
+    }
+    return queue.enqueueMessage(msg, uptimeMillis);
+}
+~~~
+
+Handler发送消息的过程是向消息队列中插入了一条消息，MessageQueue的next()方法就会返回这条消息给Looper，Looper收到消息后就开始处理了，最终消息由Looper交由Handler来处理，Handler的dispatchMessage方法会被调用，Handler进入处理消息的阶段。dispatchMessage的实现如下：
+
+~~~
+public void dispatchMessage(Message msg) {
+    if (msg.callback != null) {
+        handleCallback(msg);
+    } else {
+        if (mCallback != null) {
+            if (mCallback.handleMessage(msg)) {
+                return;
+            }
+        }
+        handleMessage(msg);
+    }
+}
+~~~
+
+### Handler处理消息的过程：
+
+首先检查Message的callback是否为null，不为null就通过handleCallback来处理消息。Message的callback是一个Runnable对象，实际上就是Handler的post方法传递的Runnable参数，handleCallback的逻辑如下：
+
+~~~
+private static void handleCallback(Message message) {
+    message.callback.run();
+}
+~~~
+
+如果Handler的callback为空，检查mCallback是否为空，不为空就调用mCallback的handleMessage方法来处理消息。
+
+最后调用Handler的handleMessage方法来处理消息。
+
+## ThreadLocal的工作原理
+
+ ThreadLocal是一个线程内部的数据存储类，通过它可以在指定的线程中存储数据，数据存储后，只有在指定线程中可以获取到存储的数据，其他线程无法获取到。当某些数据是以线程为作用域并且不同的线程有不同的数据副本时，就可以考虑采用ThreadLocal。比如对于Handler来说，它需要获取当前线程的Looper，Looper的作用域就是线程并且不同线程有不同的Looper，这个时候通过ThreadLocal就可以轻松实现Looper在线程中的存取数据。
