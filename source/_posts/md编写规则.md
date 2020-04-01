@@ -56,7 +56,7 @@ tags:
 [1]: http://www.baidu.com
 
 ## 图片相关
-![测试网络图片](https://github.com/mh199242/mh199242.github.io/blob/hexo/source/images/test.jpg)
+![测试网络图片](https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png)
 
 "!"+ "[描述]" +"(图片链接)"
 
