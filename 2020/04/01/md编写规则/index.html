@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="View的事件分发机制点击事件的传递规则点击事件的分发，其实就是对MotionEvent事件的分发过程，当一个MotionEvent点击产生以后，系统需要把这个事件传递给一个具体的view，这个传递的过程就是分发过程。点击事件的分发过程由三个方法来共同完成：dispatchTouchEvent、onInterceptTouchEvent，onTouchEvent。 123public boolea">
+<meta name="description" content="一级标题文字前加”#” 二级标题文字前加”##” 三级标题文字前加”###” 文字相关 斜体文字斜体文字文字前后加”*”或者”_”     粗体文字粗体文字文字前后加两个”*”或者两个”_”    粗斜体文字文字前后加三个”*”  文本带删除线文字前后加两个”~”  文本带下划线文字前后加”u”标签  3个以上”*”或者”-“或者”_”建立分割线      链接相关 这个是链接“[描述]” +”(">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android事件分发机制">
-<meta property="og:url" content="http://yoursite.com/2020/01/10/android事件分发机制/index.html">
+<meta property="og:title" content="md编写规则">
+<meta property="og:url" content="http://yoursite.com/2020/04/01/md编写规则/index.html">
 <meta property="og:site_name" content="米浩的学习笔记">
-<meta property="og:description" content="View的事件分发机制点击事件的传递规则点击事件的分发，其实就是对MotionEvent事件的分发过程，当一个MotionEvent点击产生以后，系统需要把这个事件传递给一个具体的view，这个传递的过程就是分发过程。点击事件的分发过程由三个方法来共同完成：dispatchTouchEvent、onInterceptTouchEvent，onTouchEvent。 123public boolea">
+<meta property="og:description" content="一级标题文字前加”#” 二级标题文字前加”##” 三级标题文字前加”###” 文字相关 斜体文字斜体文字文字前后加”*”或者”_”     粗体文字粗体文字文字前后加两个”*”或者两个”_”    粗斜体文字文字前后加三个”*”  文本带删除线文字前后加两个”~”  文本带下划线文字前后加”u”标签  3个以上”*”或者”-“或者”_”建立分割线      链接相关 这个是链接“[描述]” +”(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-22T06:40:37.476Z">
+<meta property="og:image" content="https://github.com/mh199242/mh199242.github.io/blob/hexo/source/images/test.jpg">
+<meta property="og:updated_time" content="2020-04-01T02:45:20.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android事件分发机制">
-<meta name="twitter:description" content="View的事件分发机制点击事件的传递规则点击事件的分发，其实就是对MotionEvent事件的分发过程，当一个MotionEvent点击产生以后，系统需要把这个事件传递给一个具体的view，这个传递的过程就是分发过程。点击事件的分发过程由三个方法来共同完成：dispatchTouchEvent、onInterceptTouchEvent，onTouchEvent。 123public boolea">
+<meta name="twitter:title" content="md编写规则">
+<meta name="twitter:description" content="一级标题文字前加”#” 二级标题文字前加”##” 三级标题文字前加”###” 文字相关 斜体文字斜体文字文字前后加”*”或者”_”     粗体文字粗体文字文字前后加两个”*”或者两个”_”    粗斜体文字文字前后加三个”*”  文本带删除线文字前后加两个”~”  文本带下划线文字前后加”u”标签  3个以上”*”或者”-“或者”_”建立分割线      链接相关 这个是链接“[描述]” +”(">
+<meta name="twitter:image" content="https://github.com/mh199242/mh199242.github.io/blob/hexo/source/images/test.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/10/android事件分发机制/">
+  <link rel="canonical" href="http://yoursite.com/2020/04/01/md编写规则/">
 
 
 
 
 
-  <title>android事件分发机制 | 米浩的学习笔记</title>
+  <title>md编写规则 | 米浩的学习笔记</title>
   
 
 
@@ -233,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/10/android事件分发机制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/01/md编写规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mh">
@@ -250,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">android事件分发机制</h1>
+          <h1 class="post-title" itemprop="name headline">md编写规则</h1>
         
 
         <div class="post-meta">
@@ -262,8 +264,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-10T14:36:31+08:00">
-                2020-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-01T09:31:48+08:00">
+                2020-04-01
               </time>
             
 
@@ -300,20 +302,62 @@
       
 
       
-        <h1 id="View的事件分发机制"><a href="#View的事件分发机制" class="headerlink" title="View的事件分发机制"></a>View的事件分发机制</h1><h2 id="点击事件的传递规则"><a href="#点击事件的传递规则" class="headerlink" title="点击事件的传递规则"></a>点击事件的传递规则</h2><p>点击事件的分发，其实就是对MotionEvent事件的分发过程，当一个MotionEvent点击产生以后，系统需要把这个事件传递给一个具体的view，这个传递的过程就是分发过程。点击事件的分发过程由三个方法来共同完成：dispatchTouchEvent、onInterceptTouchEvent，onTouchEvent。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev)</span><br><span class="line"></span><br><span class="line">用来进行事件的分发。如果事件能够传递给当前View，那么此方法一定会被调用，返回结果受当前View的onTouchEvent和下级View的dispatchTouchEvent方法的影响，表示是否分发当前事件。</span><br></pre></td></tr></table></figure>
+        <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><p>文字前加”#”</p>
+<h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p>文字前加”##”</p>
+<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><p>文字前加”###”</p>
+<h2 id="文字相关"><a href="#文字相关" class="headerlink" title="文字相关"></a>文字相关</h2><ol>
+<li><p><em>斜体文字</em><br><em>斜体文字</em><br>文字前后加”*”或者”_”   </p>
+</li>
+<li><p><strong>粗体文字</strong><br><strong>粗体文字</strong><br>文字前后加两个”*”或者两个”_”  </p>
+</li>
+<li><p><strong><em>粗斜体文字</em></strong><br>文字前后加三个”*”</p>
+</li>
+<li><p><del>文本带删除线</del><br>文字前后加两个”~”</p>
+</li>
+<li><p><u>文本带下划线</u><br>文字前后加”u”标签</p>
+</li>
+<li><p>3个以上”*”或者”-“或者”_”建立分割线</p>
+<hr>
+<hr>
+<hr>
+</li>
+</ol>
+<h2 id="链接相关"><a href="#链接相关" class="headerlink" title="链接相关"></a>链接相关</h2><ol>
+<li><p><a href="www.baidu.com">这个是链接</a><br>“[描述]” +”(链接)”</p>
+</li>
+<li><p><a href="http://www.baidu.com" target="_blank" rel="noopener">高级链接1</a></p>
+</li>
+</ol>
+<h2 id="图片相关"><a href="#图片相关" class="headerlink" title="图片相关"></a>图片相关</h2><p><img src="https://github.com/mh199242/mh199242.github.io/blob/hexo/source/images/test.jpg" alt="测试网络图片"></p>
+<p>“!”+ “[描述]” +”(图片链接)”</p>
+<h2 id="格式相关"><a href="#格式相关" class="headerlink" title="格式相关"></a>格式相关</h2><p><strong>无序列表</strong></p>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<p><strong>有序列表</strong></p>
+<ol>
+<li>第一项  </li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+<p><strong>区块</strong></p>
+<blockquote>
+<ul>
+<li>第一项</li>
+</ul>
+<ol>
+<li>第一小项  <ul>
+<li>第一嵌套  </li>
+<li>第二嵌套</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p><strong>代码块</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args)</span></span>&#123;</span><br><span class="line">    System.out.print(<span class="string">"test"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean onInterceptTouchEvent(MotionEvent event)</span><br><span class="line"></span><br><span class="line">在dispatchTouchEvent方法内部调用，如果当前View拦截了某个事件，那么在同一个事件序列当中，此方法不会被再次调用，返回结果表示是否拦截当前事件。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean onTouchEvent（MotionEvent event）</span><br><span class="line"></span><br><span class="line">在dispatchTouchEvent方法中调用，用来处理点击事件，返回结果表示是否消耗当前事件，如果不消耗，则在同一个事件序列当中，当前View无法再接收到事件。</span><br></pre></td></tr></table></figure>
-
-<p>上述三个方法的关系可以用如下伪代码表示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">    boolean consume = false;</span><br><span class="line">    if (onInterceptTouchEvent(ev)) &#123;</span><br><span class="line">        consume = onTouchEvent(ev);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        consume = child.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line">    return consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过上述伪代码，我们可以大致了解点击事件的传递规则：对于一个根ViewGroup来说，点击事件产生后，首先会传递给它，这时它的dispatchTouchEvent会被调用，如果这个ViewGroup的onInterceptTouchEvent方法返回true就表示它要拦截当前事件，接着事件就会交给这个ViewGroup处理，即它的onTouchEvent方法就会被调用；如果这个ViewGroup的onInterceptTouchEvent方法返回false就表示它不拦截当前事件，这时当前事件就会继续传递给它的子元素，接着子元素的dispatchTouchEvent方法就会被调用，如此反复直到事件被处理。</p>
-<p>当一个View需要处理事件时，如果它设置了OnTouchListener，那么OnTouchListener中的onTouch方法会被回调。这时事件处理要看onTouch的返回值，如果返回false，则当前View的onTouchEvent方法会被调用，如果返回true，那么onTouchEvent方法不会被调用。由此就可见，给View设置的OnTouchListener优先级比onTouchEvent高，在onTouchEvent中，如果有设置OnClickListener，其优先级最低，处于事件传递的尾端。</p>
-<p>当一个点击事件产生后，它的传递过程遵循如下顺序：Activity-&gt;Window-&gt;View,即事件先传递给Activity，Activity再传递给Window，最后Window再传递给顶级View。顶级View接收到事件后，就会按照事件分发机制去分发事件。如果一个View的onTouchEvent返回false，那么它父容器的onTouchEvent会被调用，以此类推。如果所有的元素都不处理这个事件，那么这个事件将会最终传递给Activity处理，即Activity的onTouchEvent方法会被调用。</p>
-<p>View没有onInterceptTouchEvent方法，一旦有点击事件传递给它，它的onTouchEvent方法就会被调用。</p>
 
       
     </div>
@@ -338,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/02/handler/" rel="next" title="handler">
-                <i class="fa fa-chevron-left"></i> handler
+              <a href="/2020/01/10/android事件分发机制/" rel="next" title="android事件分发机制">
+                <i class="fa fa-chevron-left"></i> android事件分发机制
               </a>
             
           </div>
@@ -347,10 +391,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/01/md编写规则/" rel="prev" title="md编写规则">
-                md编写规则 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -464,7 +504,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#View的事件分发机制"><span class="nav-number">1.</span> <span class="nav-text">View的事件分发机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#点击事件的传递规则"><span class="nav-number">1.1.</span> <span class="nav-text">点击事件的传递规则</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一级标题"><span class="nav-number">1.</span> <span class="nav-text">一级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二级标题"><span class="nav-number">1.1.</span> <span class="nav-text">二级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级标题"><span class="nav-number">1.1.1.</span> <span class="nav-text">三级标题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字相关"><span class="nav-number">1.2.</span> <span class="nav-text">文字相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接相关"><span class="nav-number">1.3.</span> <span class="nav-text">链接相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片相关"><span class="nav-number">1.4.</span> <span class="nav-text">图片相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式相关"><span class="nav-number">1.5.</span> <span class="nav-text">格式相关</span></a></li></ol></li></ol></div>
             
 
           </div>
