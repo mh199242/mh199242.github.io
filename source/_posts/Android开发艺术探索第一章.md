@@ -68,9 +68,9 @@ tags:
 
 ### IntentFilter的匹配规则
   
-    启动Activity分为两种，显示调用和隐式调用，显示调用需要明确的指定被启动对象的组件信息，包括包名和类名，而隐式意图则不需要明确指定调用信息，原则上一个intent不应该既是显式调用又是隐式调用，如果二者共存的话以显式调用为主，显式调用很简单，这里主要介绍隐式调用，隐式调用需要intent能够匹配目标组件的IntentFilter中所设置的过滤信息，如果不匹配将无法启动目标Activity，IntentFilter中的过滤信息有action、category、data，下面是一个过滤规则的实例： 
+   启动Activity分为两种，显示调用和隐式调用，显示调用需要明确的指定被启动对象的组件信息，包括包名和类名，而隐式意图则不需要明确指定调用信息，原则上一个intent不应该既是显式调用又是隐式调用，如果二者共存的话以显式调用为主，显式调用很简单，这里主要介绍隐式调用，隐式调用需要intent能够匹配目标组件的IntentFilter中所设置的过滤信息，如果不匹配将无法启动目标Activity，IntentFilter中的过滤信息有action、category、data，下面是一个过滤规则的实例： 
     
-    ```
+    
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/ThemeSplash">
@@ -90,26 +90,27 @@ tags:
                     android:scheme="hrtagent" />
             </intent-filter>
         </activity>
-    ```
+    
 
-    为了匹配过滤列表，需要同时匹配过滤列表中的action、category、data信息，否则匹配失败，一个过滤列表中的action、category、data可以有多个，所有的action、category、data分别构成不同类别，同一类型的信息共同约束当前类别的匹配过程，只有一个intent同时匹配action类别、category类别、data类别才算完全匹配，只有完全匹配才能成功启动目标Activity，另外一点，一个Activity中可以有多个intent-filter，一个intent只要能匹配一组intent-filter即可成功启动Activity
+   为了匹配过滤列表，需要同时匹配过滤列表中的action、category、data信息，否则匹配失败，一个过滤列表中的action、category、data可以有多个，所有的action、category、data分别构成不同类别，同一类型的信息共同约束当前类别的匹配过程，只有一个intent同时匹配action类别、category类别、data类别才算完全匹配，只有完全匹配才能成功启动目标Activity，另外一点，一个Activity中可以有多个intent-filter，一个intent只要能匹配一组intent-filter即可成功启动Activity
 
 
 #### action的匹配规则
    
-    action是一个字符串，系统预定了一些action，同时我们也可以在应用中定义自己的action，action的匹配规则是Intent中的action必须能够和过滤规则中的action匹配，这里说的匹配是指action的字符串值完全一样，一个过滤规则中可以有多个action，只要Intent中的action能够和过滤规则中的任何一个action相同即可匹配成功。针对上面的过滤规则，需要注意的是，Intent如果没有指定action，那么匹配失败。总结一下，action的匹配要求Intent中的action存在且必须和过滤规则中的其中一个action相同，action区分大小写，大小写不同字符串相同的action会匹配失败
+   action是一个字符串，系统预定了一些action，同时我们也可以在应用中定义自己的action，action的匹配规则是Intent中的action必须能够和过滤规则中的action匹配，这里说的匹配是指action的字符串值完全一样，一个过滤规则中可以有多个action，只要Intent中的action能够和过滤规则中的任何一个action相同即可匹配成功。针对上面的过滤规则，需要注意的是，Intent如果没有指定action，那么匹配失败。总结一下，action的匹配要求Intent中的action存在且必须和过滤规则中的其中一个action相同，action区分大小写，大小写不同字符串相同的action会匹配失败
 
 
 #### category的匹配规则
    
-    category是一个字符串，系统预定义了一些category，同时我们也可以在应用中定义自己的category。category的匹配规则和action不同，它要求Intent中如果含有category，那么所有的category都必须和过滤规则中的其中一个category相同。换句话说，Intent如果出现了category，不管有几个category，对于每个category来说，它必须是过滤规则中已经定义的category。当然，Intent中可以没有category，如果没有category的话，按照上面的描述，这个Intent仍然可以匹配成功。这里要注意下它和action匹配过程的不同，action
-    是要求Intent中必须有一个action且必须能够和过滤规则中的某个action相同，而category要求Intent可以没有category，但是如果你一旦有category，不管有几个，每个都要能和过滤规则中的任何一个category相同。
+   category是一个字符串，系统预定义了一些category，同时我们也可以在应用中定义自己的category。category的匹配规则和action不同，它要求Intent中如果含有category，那么所有的category都必须和过滤规则中的其中一个category相同。换句话说，Intent如果出现了category，不管有几个category，对于每个category来说，它必须是过滤规则中已经定义的category。当然，Intent中可以没有category，如果没有category的话，按照上面的描述，这个Intent仍然可以匹配成功。这里要注意下它和action匹配过程的不同，action
+   是要求Intent中必须有一个action且必须能够和过滤规则中的某个action相同，而category要求Intent可以没有category，但是如果你一旦有category，不管有几个，每个都要能和过滤规则中的任何一个category相同。
 
 #### data的匹配规则
    
-    data的匹配规则和action类似，它也要求Intent中必须含有data数据，并且data数据能够完全匹配过滤规则中的某一个data。这里的完全匹配是指过滤规则中出现的data部分也出现在了Intent
-    中的data中。data语法如下：
-    ```
+   data的匹配规则和action类似，它也要求Intent中必须含有data数据，并且data数据能够完全匹配过滤规则中的某一个data。这里的完全匹配是指过滤规则中出现的data部分也出现在了Intent
+   中的data中。data语法如下：
+    
+    
     <data
        android:scheme="string"
        android:host="string"
@@ -118,10 +119,9 @@ tags:
        android:pathPattern="string"
        android:pathPrefix="string"
        android:mimeType="string" />
-    ```
-    data由两部分组成，mimeType和URI，前者是媒体类型，比如image/jpeg等，可以表示图片等
     
-    URI的结构如下：
+   data由两部分组成，mimeType和URI，前者是媒体类型，比如image/jpeg等，可以表示图片等，URI的结构如下：
+
     <scheme>://<host>:<port>/[<path>|<pathPrefix>|<pathPattern>]
     http://www.baidu.com:80/search/info
 
